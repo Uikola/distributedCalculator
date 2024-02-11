@@ -9,6 +9,7 @@ import (
 	"github.com/Uikola/yandexDAEC/orchestrator/pkg/kafka"
 	"github.com/Uikola/yandexDAEC/orchestrator/pkg/kafka/consumer"
 	"github.com/Uikola/yandexDAEC/orchestrator/pkg/kafka/producer"
+	"github.com/rs/zerolog/log"
 	"golang.org/x/sync/errgroup"
 	"math/rand"
 	"time"
@@ -28,7 +29,7 @@ func (uc UseCaseImpl) AddCResource(ctx context.Context, cResource entity.Computi
 			}
 
 			if createdCResource.Occupied {
-				fmt.Println("try to resend message")
+				log.Info().Msg("try to resend message")
 				task, err := uc.taskRepository.GetTaskByCResource(ctx, createdCResource.ID)
 				if err != nil {
 					return err

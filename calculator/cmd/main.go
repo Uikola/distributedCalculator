@@ -11,6 +11,7 @@ import (
 	"github.com/forscht/namegen"
 	_ "github.com/lib/pq"
 	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
 	"os"
 	"os/signal"
 	"syscall"
@@ -18,9 +19,9 @@ import (
 
 func main() {
 	cfg := config.MustConfig()
-	log := zlog.Default(true, "dev", zerolog.InfoLevel)
+	log.Logger = zlog.Default(true, "dev", zerolog.InfoLevel)
 
-	database := db.InitDB(cfg, log)
+	database := db.InitDB(cfg)
 
 	// генерация имени для сервиса
 	name := namegen.New().WithNumberOfWords(1).WithStyle(namegen.Lowercase).Generate()

@@ -6,6 +6,7 @@ require (
 	github.com/IBM/sarama v1.42.1
 	github.com/Knetic/govaluate v3.0.0+incompatible
 	github.com/go-chi/chi/v5 v5.0.11
+	github.com/golang-migrate/migrate/v4 v4.17.0
 	github.com/lib/pq v1.10.9
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.32.0
@@ -21,7 +22,7 @@ require (
 	github.com/eapache/queue v1.1.0 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
-	github.com/hashicorp/errwrap v1.0.0 // indirect
+	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/hashicorp/go-uuid v1.0.3 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
@@ -48,7 +49,7 @@ require (
 	github.com/subosito/gotenv v1.6.0 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.9.0 // indirect
-	golang.org/x/crypto v0.16.0 // indirect
+	golang.org/x/crypto v0.17.0 // indirect
 	golang.org/x/exp v0.0.0-20230905200255-921286631fa9 // indirect
 	golang.org/x/net v0.19.0 // indirect
 	golang.org/x/sys v0.15.0 // indirect

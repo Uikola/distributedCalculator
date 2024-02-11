@@ -1,7 +1,7 @@
 package kafka
 
 var (
-	Brokers         = []string{"localhost:9092"}
+	Brokers         = []string{"kafka:9093"}
 	ExpressionTopic = "expressions"
 	ResultTopic     = "results"
 	HeartbeatTopic  = "heartbeat"
