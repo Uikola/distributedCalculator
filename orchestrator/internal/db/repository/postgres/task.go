@@ -175,3 +175,17 @@ func (r TaskRepository) GetTaskByCResource(ctx context.Context, cResourceID int6
 		Expression: expression,
 	}, nil
 }
+
+func (r TaskRepository) ErrorTask(ctx context.Context, taskID int64) error {
+	query := `
+	UPDATE tasks
+	SET status = $1
+	WHERE id = $2`
+
+	_, err := r.db.ExecContext(ctx, query, entity.Error, taskID)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}

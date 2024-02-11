@@ -30,25 +30,30 @@ func (uc UseCaseImpl) AddTask(ctx context.Context, task entity.Task) (int64, err
 
 	resources, err := uc.cResourceRepository.ListFreeCResource(ctx)
 	if err != nil {
+		err = uc.taskRepository.ErrorTask(ctx, id)
 		return 0, err
 	}
 	if len(resources) == 0 {
+		err = uc.taskRepository.ErrorTask(ctx, id)
 		return 0, errorz.ErrNoAvailableResources
 	}
 
 	resource := resources[rand.Intn(len(resources))]
 	err = uc.cResourceRepository.OccupyCResource(ctx, resource.ID)
 	if err != nil {
+		err = uc.taskRepository.ErrorTask(ctx, id)
 		return 0, err
 	}
 
 	err = uc.taskRepository.UpdateComputingResource(ctx, id, resource.ID)
 	if err != nil {
+		err = uc.taskRepository.ErrorTask(ctx, id)
 		return 0, err
 	}
 
 	p, err := producer.NewKafkaProducer(kafka.Brokers)
 	if err != nil {
+		err = uc.taskRepository.ErrorTask(ctx, id)
 		return 0, err
 	}
 	msg := fmt.Sprintf("%s:%d", task.Expression, id)

@@ -13,6 +13,7 @@ type TaskRepository interface {
 	GetTask(ctx context.Context, id int64) (entity.Task, error)
 	UpdateComputingResource(ctx context.Context, taskID, cResourceID int64) error
 	CompleteTask(ctx context.Context, taskID int64) error
+	ErrorTask(ctx context.Context, taskID int64) error
 }
 
 // CResourceRepository интерфейс репозитория для работы с вычислительными ресурсами.
