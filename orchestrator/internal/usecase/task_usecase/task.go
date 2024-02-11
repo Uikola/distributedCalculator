@@ -3,13 +3,14 @@ package task_usecase
 import (
 	"context"
 	"fmt"
+	"math/rand"
+	"strconv"
+
 	"github.com/Uikola/yandexDAEC/orchestrator/internal/entity"
 	"github.com/Uikola/yandexDAEC/orchestrator/pkg/errorz"
 	"github.com/Uikola/yandexDAEC/orchestrator/pkg/kafka"
 	"github.com/Uikola/yandexDAEC/orchestrator/pkg/kafka/consumer"
 	"github.com/Uikola/yandexDAEC/orchestrator/pkg/kafka/producer"
-	"math/rand"
-	"strconv"
 )
 
 // AddTask отправляет арифметическое выражение в топик "expressions" и вызывает метод репозитория AddTask.

@@ -2,10 +2,11 @@ package task
 
 import (
 	"encoding/json"
-	"github.com/go-chi/chi/v5"
-	"github.com/rs/zerolog/log"
 	"net/http"
 	"strconv"
+
+	"github.com/go-chi/chi/v5"
+	"github.com/rs/zerolog/log"
 )
 
 // GetTask ручка, которая возвращает задачу по её идентификатору.

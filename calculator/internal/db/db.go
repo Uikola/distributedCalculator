@@ -2,6 +2,7 @@ package db
 
 import (
 	"database/sql"
+
 	"github.com/Uikola/yandexDAEC/calculator/internal/config"
 	"github.com/rs/zerolog/log"
 )

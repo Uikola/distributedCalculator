@@ -2,6 +2,10 @@ package main
 
 import (
 	"context"
+	"os"
+	"os/signal"
+	"syscall"
+
 	"github.com/Uikola/yandexDAEC/calculator/internal/config"
 	"github.com/Uikola/yandexDAEC/calculator/internal/db"
 	"github.com/Uikola/yandexDAEC/calculator/internal/db/repository"
@@ -12,9 +16,6 @@ import (
 	_ "github.com/lib/pq"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
-	"os"
-	"os/signal"
-	"syscall"
 )
 
 func main() {

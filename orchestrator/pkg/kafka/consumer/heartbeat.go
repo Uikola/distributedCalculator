@@ -3,10 +3,11 @@ package consumer
 import (
 	"errors"
 	"fmt"
+	"time"
+
 	"github.com/IBM/sarama"
 	"github.com/Uikola/yandexDAEC/orchestrator/pkg/kafka"
 	"github.com/rs/zerolog/log"
-	"time"
 )
 
 // StartHeartbeatConsumer запускает kafka consumer, который прослушивает heartbeat сообщения.

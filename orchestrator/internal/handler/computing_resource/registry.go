@@ -3,9 +3,10 @@ package computing_resource
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
+
 	"github.com/Uikola/yandexDAEC/orchestrator/internal/entity"
 	"github.com/rs/zerolog/log"
-	"net/http"
 )
 
 // RegistryReqBody структура для работы с телом запроса.

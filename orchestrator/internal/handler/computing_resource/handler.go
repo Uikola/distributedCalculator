@@ -2,6 +2,7 @@ package computing_resource
 
 import (
 	"context"
+
 	"github.com/Uikola/yandexDAEC/orchestrator/internal/entity"
 )
 

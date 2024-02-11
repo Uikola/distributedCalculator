@@ -2,10 +2,11 @@ package consumer
 
 import (
 	"fmt"
+	"time"
+
 	"github.com/IBM/sarama"
 	"github.com/Uikola/yandexDAEC/orchestrator/pkg/errorz"
 	"github.com/Uikola/yandexDAEC/orchestrator/pkg/kafka"
-	"time"
 )
 
 // StartResultConsumer запускает kafka consumer, который прослушивает сообщения с результатами вычислений.

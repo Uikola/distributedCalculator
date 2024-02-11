@@ -2,12 +2,13 @@ package task
 
 import (
 	"encoding/json"
+	"net/http"
+	"strconv"
+
 	"github.com/Uikola/yandexDAEC/orchestrator/pkg/errorz"
 	"github.com/go-chi/chi/v5"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog/log"
-	"net/http"
-	"strconv"
 )
 
 // GetResult ручка, которая возвращает результат вычисленного выражения.

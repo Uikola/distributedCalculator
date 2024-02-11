@@ -5,14 +5,15 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"math/rand"
+	"time"
+
 	"github.com/Uikola/yandexDAEC/orchestrator/internal/entity"
 	"github.com/Uikola/yandexDAEC/orchestrator/pkg/kafka"
 	"github.com/Uikola/yandexDAEC/orchestrator/pkg/kafka/consumer"
 	"github.com/Uikola/yandexDAEC/orchestrator/pkg/kafka/producer"
 	"github.com/rs/zerolog/log"
 	"golang.org/x/sync/errgroup"
-	"math/rand"
-	"time"
 )
 
 // AddCResource в отдельной горутине вызывает прослушку heartbeat сообщений(в случае ошибки удаляет

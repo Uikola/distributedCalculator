@@ -2,9 +2,10 @@ package operation
 
 import (
 	"encoding/json"
+	"net/http"
+
 	"github.com/Uikola/yandexDAEC/orchestrator/internal/entity"
 	"github.com/rs/zerolog/log"
-	"net/http"
 )
 
 // UpdateOperationTimeReqBody структура для работы с телом запроса.

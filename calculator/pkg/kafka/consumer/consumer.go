@@ -2,13 +2,14 @@ package consumer
 
 import (
 	"fmt"
+	"strconv"
+	"strings"
+	"time"
+
 	"github.com/IBM/sarama"
 	"github.com/Uikola/yandexDAEC/calculator/pkg/kafka"
 	"github.com/Uikola/yandexDAEC/calculator/pkg/polish_notation"
 	"github.com/rs/zerolog/log"
-	"strconv"
-	"strings"
-	"time"
 )
 
 // StartConsumer запускает kafka producer, который пишет heartbeat сообщения в топик "heartbeat", и kafka

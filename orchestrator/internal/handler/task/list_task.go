@@ -2,9 +2,10 @@ package task
 
 import (
 	"encoding/json"
-	"github.com/rs/zerolog/log"
 	"net/http"
 	"strconv"
+
+	"github.com/rs/zerolog/log"
 )
 
 // ListTask ручка, которая возвращает список задач с лимитом и офсетом.

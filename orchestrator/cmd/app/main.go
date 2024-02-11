@@ -2,6 +2,12 @@ package main
 
 import (
 	"context"
+	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
+
 	"github.com/Uikola/yandexDAEC/orchestrator/internal/config"
 	"github.com/Uikola/yandexDAEC/orchestrator/internal/db"
 	"github.com/Uikola/yandexDAEC/orchestrator/internal/db/repository/postgres"
@@ -18,11 +24,6 @@ import (
 	_ "github.com/lib/pq"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
-	"net/http"
-	"os"
-	"os/signal"
-	"syscall"
-	"time"
 )
 
 func main() {
