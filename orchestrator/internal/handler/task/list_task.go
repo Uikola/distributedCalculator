@@ -9,6 +9,16 @@ import (
 )
 
 // ListTask ручка, которая возвращает список задач с лимитом и офсетом.
+//
+//	@Summary		Получает список задач с лимитом и офсетом.
+//	@Description	Получает список задач с лимитом и офсетом.
+//	@Tags			tasks
+//	@Accept			json
+//	@Produce		json
+//	@Param			limit	query		int	true	"Лимит"
+//	@Param			offset	query		int	true	"Смещение"
+//	@Success		200		{array}		entity.Task
+//	@Failure		500		{object}	string
 func (h Handler) ListTask(w http.ResponseWriter, r *http.Request) {
 	var offset, limit int
 	ctx := r.Context()
@@ -26,9 +36,5 @@ func (h Handler) ListTask(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err = json.NewEncoder(w).Encode(tasks); err != nil {
-		log.Error().Err(err).Msg("can't encode the list of tasks")
-		http.Error(w, "error", http.StatusBadRequest)
-		return
-	}
+	_ = json.NewEncoder(w).Encode(tasks)
 }

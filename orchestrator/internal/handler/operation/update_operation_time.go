@@ -15,6 +15,20 @@ type UpdateOperationTimeReqBody struct {
 }
 
 // UpdateOperationTime ручка, которая обновляет время выполнения указанной операции.
+//
+// # UpdateOperationTime
+//
+//	@Summary		Обновляет время указанной операции.
+//	@Description	Обновляет время указанной операции.
+//	@Tags			operations
+//	@Accept			json
+//	@Produce		json
+//	@Param			operation	body	UpdateOperationTimeReqBody	true	"оператор с временем его выполнения"
+//	@Success		204			"No content"
+//	@Failure		400			{object}	string
+//	@Failure		500			{object}	string
+//
+//	@Router			/operations [put]
 func (h Handler) UpdateOperationTime(w http.ResponseWriter, r *http.Request) {
 	var request UpdateOperationTimeReqBody
 	ctx := r.Context()

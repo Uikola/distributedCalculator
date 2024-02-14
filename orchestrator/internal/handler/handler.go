@@ -5,6 +5,9 @@ import (
 	"github.com/Uikola/yandexDAEC/orchestrator/internal/handler/operation"
 	"github.com/Uikola/yandexDAEC/orchestrator/internal/handler/task"
 	"github.com/go-chi/chi/v5"
+	httpSwagger "github.com/swaggo/http-swagger"
+
+	_ "github.com/Uikola/yandexDAEC/orchestrator/docs"
 )
 
 // Handler структура для взаимодействия с хендлером, объединяющем все хендлеры.
@@ -21,11 +24,16 @@ func New(operationHandler *operation.Handler, taskHandler *task.Handler, cResour
 
 // Router создаёт всю инфраструктуру и задаёт пути для ручек.
 func Router(handler *Handler, router chi.Router) {
+	router.Get("/swagger/*", httpSwagger.Handler(
+		httpSwagger.URL("http://localhost:8080/swagger/doc.json"),
+	))
+
 	router.Post("/calculate", handler.Task.AddTask)
-	router.Get("/task/{id}", handler.Task.GetTask)
-	router.Get("/task", handler.Task.ListTask)
-	router.Get("/operation", handler.Operation.ListOperation)
-	router.Put("/operation", handler.Operation.UpdateOperationTime)
+	router.Get("/tasks/{id}", handler.Task.GetTask)
+	router.Get("/tasks", handler.Task.ListTask)
+	router.Get("/operations", handler.Operation.ListOperation)
+	router.Put("/operations", handler.Operation.UpdateOperationTime)
 	router.Post("/registry", handler.cResource.Registry)
-	router.Get("/result/{id}", handler.Task.GetResult)
+	router.Get("/results/{id}", handler.Task.GetResult)
+	router.Get("/c_resources", handler.cResource.ListCResources)
 }

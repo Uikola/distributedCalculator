@@ -12,6 +12,20 @@ import (
 )
 
 // GetResult ручка, которая возвращает результат вычисленного выражения.
+//
+// # GetResult
+//
+//	@Summary		Получает результат по идентификатору задачи.
+//	@Description	Получает результат по идентификатору задачи.
+//	@Tags			tasks
+//	@Accept			json
+//	@Produce		json
+//	@Param			task_id	path		int	true	"Идентификатор задачи"
+//	@Success		200		{object}	map[string]string
+//	@Failure		400		{object}	string
+//	@Failure		500		{object}	string
+//
+//	@Router			/results/{task_id} [get]
 func (h Handler) GetResult(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 
@@ -34,8 +48,5 @@ func (h Handler) GetResult(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := json.NewEncoder(w).Encode(map[string]string{"result": result}); err != nil {
-		log.Error().Err(err).Msg("can't encode the result")
-		return
-	}
+	_ = json.NewEncoder(w).Encode(map[string]string{"result": result})
 }

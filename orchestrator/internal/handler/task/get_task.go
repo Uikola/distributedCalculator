@@ -10,6 +10,20 @@ import (
 )
 
 // GetTask ручка, которая возвращает задачу по её идентификатору.
+//
+// # GetTask
+//
+//	@Summary		Получает задачу по её идентификатору.
+//	@Description	Получает задачу по её идентификатору.
+//	@Tags			tasks
+//	@Accept			json
+//	@Produce		json
+//	@Param			task_id	path		int	true	"Идентификатор задачи"
+//	@Success		200		{object}	entity.Task
+//	@Failure		400		{object}	string
+//	@Failure		500		{object}	string
+//
+//	@Router			/tasks/{task_id} [get]
 func (h Handler) GetTask(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 
@@ -27,9 +41,5 @@ func (h Handler) GetTask(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err = json.NewEncoder(w).Encode(task); err != nil {
-		log.Error().Err(err).Msg("can't encode the task")
-		http.Error(w, "error", http.StatusBadRequest)
-		return
-	}
+	_ = json.NewEncoder(w).Encode(task)
 }

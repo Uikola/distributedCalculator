@@ -26,6 +26,12 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+//	@title			yandex_calculator
+//	@version		1.0
+//	@description	Распределённый калькулятор
+
+// @host		localhost:8080
+// @BasePath	/
 func main() {
 	run()
 }

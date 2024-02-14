@@ -21,6 +21,21 @@ type AddTaskReqBody struct {
 }
 
 // AddTask ручка, которая добавляет новую задачу.
+//
+// # AddTask
+//
+//	@Summary		Добавляет новую задачу и отдаёт её на обработку.
+//	@Description	Добавляет новую задачу и отдаёт её на обработку.
+//	@Tags			tasks
+//	@Accept			json
+//	@Produce		json
+//	@Param			task	body		AddTaskReqBody	true	"Задача"
+//	@Success		200		{object}	string
+//	@Success		201		{object}	string
+//	@Failure		400		{object}	string
+//	@Failure		500		{object}	string
+//
+//	@Router			/calculate [post]
 func (h Handler) AddTask(w http.ResponseWriter, r *http.Request) {
 	var request AddTaskReqBody
 	ctx := r.Context()
@@ -53,7 +68,7 @@ func (h Handler) AddTask(w http.ResponseWriter, r *http.Request) {
 		return
 	case errors.Is(err, errorz.ErrTaskAlreadyExists):
 		log.Info().Err(err).Msg("task already exists")
-		_ = json.NewEncoder(w).Encode("expressions will be calculated soon")
+		_ = json.NewEncoder(w).Encode("task with this id already exists, try another one")
 		return
 	case err != nil:
 		log.Error().Err(err).Msg("can't add task")

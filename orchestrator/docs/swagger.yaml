@@ -1,0 +1,234 @@
+basePath: /
+definitions:
+  entity.ComputingResource:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      occupied:
+        type: boolean
+      task:
+        type: string
+    type: object
+  entity.ExpressionStatus:
+    enum:
+    - error
+    - in_progress
+    - ok
+    type: string
+    x-enum-varnames:
+    - Error
+    - InProgress
+    - OK
+  entity.Operation:
+    properties:
+      duration:
+        type: integer
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  entity.Task:
+    properties:
+      calculatedAt:
+        type: string
+      calculatedBy:
+        type: integer
+      createdAt:
+        type: string
+      expression:
+        type: string
+      id:
+        type: integer
+      status:
+        $ref: '#/definitions/entity.ExpressionStatus'
+    type: object
+  operation.UpdateOperationTimeReqBody:
+    properties:
+      duration:
+        type: integer
+      name:
+        type: string
+    type: object
+  task.AddTaskReqBody:
+    properties:
+      expression:
+        type: string
+      id:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: Распределённый калькулятор
+  title: yandex_calculator
+  version: "1.0"
+paths:
+  /c_resources:
+    get:
+      consumes:
+      - application/json
+      description: Выводит список вычислительных мощностей с задачами, которые на
+        них выполняются.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entity.ComputingResource'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Выводит список вычислительных мощностей с задачами, которые на них
+        выполняются.
+      tags:
+      - computing_resources
+  /calculate:
+    post:
+      consumes:
+      - application/json
+      description: Добавляет новую задачу и отдаёт её на обработку.
+      parameters:
+      - description: Задача
+        in: body
+        name: task
+        required: true
+        schema:
+          $ref: '#/definitions/task.AddTaskReqBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "201":
+          description: Created
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Добавляет новую задачу и отдаёт её на обработку.
+      tags:
+      - tasks
+  /operations:
+    get:
+      consumes:
+      - application/json
+      description: Выводит список доступных операций и время их работы.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entity.Operation'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Выводит список доступных операций.
+      tags:
+      - operations
+    put:
+      consumes:
+      - application/json
+      description: Обновляет время указанной операции.
+      parameters:
+      - description: оператор с временем его выполнения
+        in: body
+        name: operation
+        required: true
+        schema:
+          $ref: '#/definitions/operation.UpdateOperationTimeReqBody'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No content
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Обновляет время указанной операции.
+      tags:
+      - operations
+  /results/{task_id}:
+    get:
+      consumes:
+      - application/json
+      description: Получает результат по идентификатору задачи.
+      parameters:
+      - description: Идентификатор задачи
+        in: path
+        name: task_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Получает результат по идентификатору задачи.
+      tags:
+      - tasks
+  /tasks/{task_id}:
+    get:
+      consumes:
+      - application/json
+      description: Получает задачу по её идентификатору.
+      parameters:
+      - description: Идентификатор задачи
+        in: path
+        name: task_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entity.Task'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Получает задачу по её идентификатору.
+      tags:
+      - tasks
+swagger: "2.0"
