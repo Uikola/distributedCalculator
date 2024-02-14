@@ -20,7 +20,7 @@ type TaskRepository interface {
 // CResourceRepository интерфейс репозитория для работы с вычислительными ресурсами.
 type CResourceRepository interface {
 	ListFreeCResource(ctx context.Context) ([]entity.ComputingResource, error)
-	OccupyCResource(ctx context.Context, cResourceID int64) error
+	OccupyCResource(ctx context.Context, cResourceID int64, task string) error
 	FreeCResource(ctx context.Context, cResourceID int64) error
 	GetCResource(ctx context.Context, id int64) (entity.ComputingResource, error)
 }

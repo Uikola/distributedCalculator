@@ -11,8 +11,9 @@ type CResourceRepository interface {
 	AddCResource(ctx context.Context, cResource entity.ComputingResource) error
 	DeleteCResource(ctx context.Context, cResourceName string) error
 	ListFreeCResource(ctx context.Context) ([]entity.ComputingResource, error)
-	OccupyCResource(ctx context.Context, cResourceID int64) error
+	OccupyCResource(ctx context.Context, cResourceID int64, task string) error
 	GetCResourceByName(ctx context.Context, name string) (entity.ComputingResource, error)
+	ListCResource(ctx context.Context) ([]entity.ComputingResource, error)
 }
 
 // TaskRepository интерфейс репозитория для работы с задачами.

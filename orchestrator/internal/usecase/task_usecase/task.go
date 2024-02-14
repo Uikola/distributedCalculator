@@ -40,7 +40,7 @@ func (uc UseCaseImpl) AddTask(ctx context.Context, task entity.Task) (int64, err
 	}
 
 	resource := resources[rand.Intn(len(resources))]
-	err = uc.cResourceRepository.OccupyCResource(ctx, resource.ID)
+	err = uc.cResourceRepository.OccupyCResource(ctx, resource.ID, task.Expression)
 	if err != nil {
 		err = uc.taskRepository.ErrorTask(ctx, id)
 		return 0, err
@@ -72,6 +72,7 @@ func (uc UseCaseImpl) GetTask(ctx context.Context, id int64) (entity.Task, error
 	return uc.taskRepository.GetTask(ctx, id)
 }
 
+// GetResult получает результат из очереди и помечает вычислительных ресурс свободным.
 func (uc UseCaseImpl) GetResult(ctx context.Context, id int64) (string, error) {
 	task, err := uc.taskRepository.GetTask(ctx, id)
 	if err != nil {

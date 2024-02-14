@@ -9,6 +9,7 @@ import (
 // UseCase интерфейс для работы с юс кейсом вычислительных ресурсов.
 type UseCase interface {
 	AddCResource(ctx context.Context, cResource entity.ComputingResource) error
+	ListCResources(ctx context.Context) (map[string]*string, error)
 }
 
 // Handler структура для работы с хендлером вычислительных ресурсов.

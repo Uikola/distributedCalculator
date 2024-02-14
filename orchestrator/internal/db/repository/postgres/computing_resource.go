@@ -60,15 +60,17 @@ func (r CResourceRepository) ListFreeCResource(ctx context.Context) ([]entity.Co
 	var id int64
 	var name string
 	var occupied bool
+	var task *string
 
 	for rows.Next() {
-		err = rows.Scan(&id, &name, &occupied)
+		err = rows.Scan(&id, &name, &task, &occupied)
 		if err != nil {
 			return nil, err
 		}
 		cResource := entity.ComputingResource{
 			ID:       id,
 			Name:     name,
+			Task:     task,
 			Occupied: occupied,
 		}
 		cResources = append(cResources, cResource)
@@ -78,13 +80,14 @@ func (r CResourceRepository) ListFreeCResource(ctx context.Context) ([]entity.Co
 }
 
 // OccupyCResource занимает вычислительный ресурс и возвращает ошибку.
-func (r CResourceRepository) OccupyCResource(ctx context.Context, cResourceID int64) error {
+func (r CResourceRepository) OccupyCResource(ctx context.Context, cResourceID int64, task string) error {
 	query := `
 	UPDATE computing_resources
-	SET occupied = true
-	WHERE id = $1`
+	SET occupied = true,
+	    task = $1
+	WHERE id = $2`
 
-	_, err := r.db.ExecContext(ctx, query, cResourceID)
+	_, err := r.db.ExecContext(ctx, query, task, cResourceID)
 	if err != nil {
 		return err
 	}
@@ -96,7 +99,8 @@ func (r CResourceRepository) OccupyCResource(ctx context.Context, cResourceID in
 func (r CResourceRepository) FreeCResource(ctx context.Context, cResourceID int64) error {
 	query := `
 	UPDATE computing_resources
-	SET occupied = false
+	SET occupied = false,
+	    task = ''
 	WHERE id = $1`
 
 	_, err := r.db.ExecContext(ctx, query, cResourceID)
@@ -164,4 +168,31 @@ func (r CResourceRepository) CleanUpCResources(ctx context.Context) error {
 	}
 
 	return nil
+}
+
+func (r CResourceRepository) ListCResource(ctx context.Context) ([]entity.ComputingResource, error) {
+	query := `
+	SELECT name, task
+	FROM computing_resources`
+
+	rows, err := r.db.QueryContext(ctx, query)
+	if err != nil {
+		return nil, err
+	}
+	var cResources []entity.ComputingResource
+	var name string
+	var task *string
+	for rows.Next() {
+		err = rows.Scan(&name, &task)
+		if err != nil {
+			return nil, err
+		}
+		cResource := entity.ComputingResource{
+			Name: name,
+			Task: task,
+		}
+		cResources = append(cResources, cResource)
+	}
+
+	return cResources, nil
 }

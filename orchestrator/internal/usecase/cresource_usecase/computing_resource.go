@@ -46,7 +46,7 @@ func (uc UseCaseImpl) AddCResource(ctx context.Context, cResource entity.Computi
 				}
 
 				resource := resources[rand.Intn(len(resources))]
-				err = uc.cResourceRepository.OccupyCResource(ctx, resource.ID)
+				err = uc.cResourceRepository.OccupyCResource(ctx, resource.ID, task.Expression)
 				if err != nil {
 					return err
 				}
@@ -74,4 +74,19 @@ func (uc UseCaseImpl) AddCResource(ctx context.Context, cResource entity.Computi
 	})
 
 	return uc.cResourceRepository.AddCResource(ctx, cResource)
+}
+
+func (uc UseCaseImpl) ListCResources(ctx context.Context) (map[string]*string, error) {
+	cResources, err := uc.cResourceRepository.ListCResource(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	pairs := make(map[string]*string)
+
+	for _, cResource := range cResources {
+		pairs[cResource.Name] = cResource.Task
+	}
+
+	return pairs, nil
 }
