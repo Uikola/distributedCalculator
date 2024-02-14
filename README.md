@@ -94,6 +94,6 @@ ookeeper zookeeper:2181
 
 Yuri - [@telegram](https://t.me/uikola) - ugulaev806@yandex.ru
 
-Project Link: [https://github.com/Uikola/survey](https://github.com/Uikola/survey)
+Project Link: [https://github.com/Uikola/distributedCalculator](https://github.com/Uikola/distributedCalculator)
 
 
