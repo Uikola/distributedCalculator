@@ -82,9 +82,9 @@ res://postgres:password@db:5432/orchestratorDB?sslmode=disable
 ```sh
 * docker-compose exec kafka kafka-topics.sh --create --topic expressions --partitions 1 --replication-factor 1 --z
 ookeeper zookeeper:2181
-*docker-compose exec kafka kafka-topics.sh --create --topic results --partitions 1 --replication-factor 1 --z
+* docker-compose exec kafka kafka-topics.sh --create --topic results --partitions 1 --replication-factor 1 --z
 ookeeper zookeeper:2181
-*docker-compose exec kafka kafka-topics.sh --create --topic heartbeat --partitions 1 --replication-factor 1 --z
+* docker-compose exec kafka kafka-topics.sh --create --topic heartbeat --partitions 1 --replication-factor 1 --z
 ookeeper zookeeper:2181
 ```
 
