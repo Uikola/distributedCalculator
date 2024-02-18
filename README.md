@@ -88,9 +88,9 @@ ookeeper zookeeper:2181
 ookeeper zookeeper:2181
 ```
 
-10. Приложение готово к использованию! Вы можете открыть swagger по url: localhost:8080/swagger
+10. Приложение готово к использованию! Запускайте сколько угодно калькуляторов(сперва запустити go mod tidy в директории калькулятора) go run cmd/main.go. Вы можете открыть swagger по url: localhost:8080/swagger
 <!-- CONTACT -->
-## Contact
+## Contact(Если возникли вопросы)
 
 Yuri - [@telegram](https://t.me/uikola) - ugulaev806@yandex.ru
 
