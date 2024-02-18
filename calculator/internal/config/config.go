@@ -14,7 +14,7 @@ type Config struct {
 func MustConfig() *Config {
 	var config Config
 	viper.AddConfigPath("./internal/config/envs")
-	viper.SetConfigName("dev")
+	viper.SetConfigName("prod")
 	viper.SetConfigType("env")
 	viper.AutomaticEnv()
 
