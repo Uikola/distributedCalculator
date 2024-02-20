@@ -75,7 +75,7 @@ docker build -t orchestrator -f Dockerfile .
 
 9. Запустите migrator.
  ```sh
-   go run cmd/migrator/main.go --db-url=postgres://{your_db_user}:{your_db_password}@db:{your_db_port}/{your_db_host}?sslmode=disable
+   go run cmd/migrator/main.go --db-url=postgres://{your_db_user}:{your_db_password}@{your_db_host}:{your_db_port}/{your_db_name}?sslmode=disable
    ```
 
 10. Создайте топики в кафке
