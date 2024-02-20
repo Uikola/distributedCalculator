@@ -47,38 +47,38 @@
    ```sh
    git clone https://github.com/Uikola/distributedCalculator.git
    ```
-2. Создайте директории envs в директориях config и добавьте туда prod.env файл(у вас должно получиться два .env файла: 1 в orchestrator/internal/config/envs, 2 в calculator/internal/config/envs).
-
+2. В связи с тех. неполадками прошу вас создать на вашей локальной машине базу данных postgresql.
 3. Создайте директории envs в директориях config и добавьте туда prod.env файл(у вас должно получиться два .env файла: 1 в orchestrator/internal/config/envs, 2 в calculator/internal/config/envs).
 
-4. Файл orchestrator/internal/config/envs/prod.env должен иметь следующее содержимое:
+4. Создайте директории envs в директориях config и добавьте туда prod.env файл(у вас должно получиться два .env файла: 1 в orchestrator/internal/config/envs, 2 в calculator/internal/config/envs).
+
+5. Файл orchestrator/internal/config/envs/prod.env должен иметь следующее содержимое:
    * PORT=:8080
-   * CONN_STRING=host=db port=5432 user=postgres password=password dbname=orchestratorDB sslmode=disable
+   * CONN_STRING=host={your_db_host} port={your_db_port} user={your_db_user} password={your_db_password} dbname={your_db_name} sslmode=disable
    * DRIVER_NAME=postgres
    * ENV={dev or prod}
    * TIMEOUT={your_timeout}
    * IDLE_TIMEOUT={your_idle_timeout}
 
-5. Файл calculator/internal/config/envs/prod.env должен иметь следующее содержимое:
-   * CONN_STRING=host=localhost port=5432 user=postgres password=fgaSHFRdgkA4 dbname=postgres sslmode=disable
+6. Файл calculator/internal/config/envs/prod.env должен иметь следующее содержимое:
+   * CONN_STRING=host={your_db_host} port={your_db_port} user={your_db_user} password={your_db_password} dbname={your_db_name} sslmode=disable
    * DRIVER_NAME=postgres
-6. Соберите образ оркестратора запустив команду в его директории.
+7. Соберите образ оркестратора запустив команду в его директории.
 ```sh
 docker build -t orchestrator -f Dockerfile .
 ```
 
-7. Запустите docker-compose:
+8. Запустите docker-compose:
  ```sh
    docker-compose up -d
    ```
 
-8. Запустите migrator в запущенном контейнере.
+9. Запустите migrator.
  ```sh
-   docker exec -it {your_container_name} go run cmd/migrator/main.go --db-url=postg
-res://postgres:password@db:5432/orchestratorDB?sslmode=disable
+   go run cmd/migrator/main.go --db-url=postgres://{your_db_user}:{your_db_password}@db:{your_db_port}/{your_db_host}?sslmode=disable
    ```
 
-9. Создайте топики в кафке
+10. Создайте топики в кафке
 ```sh
 * docker-compose exec kafka kafka-topics.sh --create --topic expressions --partitions 1 --replication-factor 1 --z
 ookeeper zookeeper:2181
@@ -88,7 +88,7 @@ ookeeper zookeeper:2181
 ookeeper zookeeper:2181
 ```
 
-10. Приложение готово к использованию! Запускайте сколько угодно калькуляторов(сперва запустити go mod tidy в директории калькулятора) go run cmd/main.go. Вы можете открыть swagger по url: localhost:8080/swagger
+11. Приложение готово к использованию! Запускайте сколько угодно калькуляторов(сперва запустити go mod tidy в директории калькулятора) go run cmd/main.go. Вы можете открыть swagger по url: localhost:8080/swagger
 <!-- CONTACT -->
 ## Contact(Если возникли вопросы)
 
