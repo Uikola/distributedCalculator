@@ -47,9 +47,9 @@
    ```sh
    git clone https://github.com/Uikola/distributedCalculator.git
    ```
-2. Создайте директории dev в директориях config и добавьте туда prod.env файл(у вас должно получиться два .env файла: 1 в orchestrator/internal/config/envs, 2 в calculator/internal/config/envs).
+2. Создайте директории envs в директориях config и добавьте туда prod.env файл(у вас должно получиться два .env файла: 1 в orchestrator/internal/config/envs, 2 в calculator/internal/config/envs).
 
-3. Создайте директории dev в директориях config и добавьте туда prod.env файл(у вас должно получиться два .env файла: 1 в orchestrator/internal/config/envs, 2 в calculator/internal/config/envs).
+3. Создайте директории envs в директориях config и добавьте туда prod.env файл(у вас должно получиться два .env файла: 1 в orchestrator/internal/config/envs, 2 в calculator/internal/config/envs).
 
 4. Файл orchestrator/internal/config/envs/prod.env должен иметь следующее содержимое:
    * PORT=:8080
@@ -88,9 +88,9 @@ ookeeper zookeeper:2181
 ookeeper zookeeper:2181
 ```
 
-10. Приложение готово к использованию! Вы можете открыть swagger по url: localhost:8080/swagger
+10. Приложение готово к использованию! Запускайте сколько угодно калькуляторов(сперва запустити go mod tidy в директории калькулятора) go run cmd/main.go. Вы можете открыть swagger по url: localhost:8080/swagger
 <!-- CONTACT -->
-## Contact
+## Contact(Если возникли вопросы)
 
 Yuri - [@telegram](https://t.me/uikola) - ugulaev806@yandex.ru
 
