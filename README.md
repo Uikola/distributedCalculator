@@ -35,6 +35,7 @@
 - Chi router
 - Docker
 - Интерфейс сгенерирован с помощью swagger
+- Go(1.22.0)
 
 <!-- GETTING STARTED -->
 ## Начало Работы
