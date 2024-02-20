@@ -47,9 +47,9 @@
    ```sh
    git clone https://github.com/Uikola/distributedCalculator.git
    ```
-2. Создайте директории dev в директориях config и добавьте туда prod.env файл(у вас должно получиться два .env файла: 1 в orchestrator/internal/config/envs, 2 в calculator/internal/config/envs).
+2. Создайте директории envs в директориях config и добавьте туда prod.env файл(у вас должно получиться два .env файла: 1 в orchestrator/internal/config/envs, 2 в calculator/internal/config/envs).
 
-3. Создайте директории dev в директориях config и добавьте туда prod.env файл(у вас должно получиться два .env файла: 1 в orchestrator/internal/config/envs, 2 в calculator/internal/config/envs).
+3. Создайте директории envs в директориях config и добавьте туда prod.env файл(у вас должно получиться два .env файла: 1 в orchestrator/internal/config/envs, 2 в calculator/internal/config/envs).
 
 4. Файл orchestrator/internal/config/envs/prod.env должен иметь следующее содержимое:
    * PORT=:8080
