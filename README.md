@@ -64,22 +64,18 @@
 6. Файл calculator/internal/config/envs/prod.env должен иметь следующее содержимое:
    * CONN_STRING=host={your_db_host} port={your_db_port} user={your_db_user} password={your_db_password} dbname={your_db_name} sslmode=disable
    * DRIVER_NAME=postgres
-7. Соберите образ оркестратора запустив команду в его директории.
-```sh
-docker build -t orchestrator -f Dockerfile .
-```
 
-8. Запустите docker-compose:
+7. Запустите docker-compose:
  ```sh
    docker-compose up -d
    ```
 
-9. Запустите migrator.
+8. Запустите migrator.
  ```sh
    go run cmd/migrator/main.go --db-url=postgres://{your_db_user}:{your_db_password}@{your_db_host}:{your_db_port}/{your_db_name}?sslmode=disable
    ```
 
-10. Создайте топики в кафке
+9. Создайте топики в кафке
 ```sh
 * docker-compose exec kafka kafka-topics.sh --create --topic expressions --partitions 1 --replication-factor 1 --z
 ookeeper zookeeper:2181
@@ -89,7 +85,7 @@ ookeeper zookeeper:2181
 ookeeper zookeeper:2181
 ```
 
-11. Приложение готово к использованию! Запускайте сколько угодно калькуляторов(сперва запустити go mod tidy в директории калькулятора) go run cmd/main.go. Вы можете открыть swagger по url: localhost:8080/swagger
+10. Приложение готово к использованию! Сперва запустить оркестатор(запустите go mod tidy). Затем запускайте сколько угодно калькуляторов(сперва запустити go mod tidy в директории калькулятора) go run cmd/main.go. Вы можете открыть swagger по url: localhost:8080/swagger
 <!-- CONTACT -->
 ## Contact(Если возникли вопросы)
 
