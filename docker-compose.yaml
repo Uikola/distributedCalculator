@@ -17,10 +17,5 @@ services:
       KAFKA_LISTENERS: INSIDE://0.0.0.0:9093,OUTSIDE://0.0.0.0:9092
       KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-  app:
-    image: orchestrator:latest
-    ports:
-      - "8080:8080"
-    restart: on-failure
 volumes:
   postgres_data:
