@@ -202,6 +202,38 @@ paths:
       summary: Получает результат по идентификатору задачи.
       tags:
       - tasks
+  /tasks:
+    get:
+      consumes:
+      - application/json
+      description: Получает список задач с лимитом и офсетом.
+      parameters:
+      - description: Лимит
+        in: query
+        name: limit
+        required: true
+        type: integer
+      - description: Смещение
+        in: query
+        name: offset
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/entity.Task'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Получает список задач с лимитом и офсетом.
+      tags:
+      - tasks
   /tasks/{task_id}:
     get:
       consumes:

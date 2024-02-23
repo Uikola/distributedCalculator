@@ -19,6 +19,8 @@ import (
 //	@Param			offset	query		int	true	"Смещение"
 //	@Success		200		{array}		entity.Task
 //	@Failure		500		{object}	string
+//
+//	@Router			/tasks [get]
 func (h Handler) ListTask(w http.ResponseWriter, r *http.Request) {
 	var offset, limit int
 	ctx := r.Context()
