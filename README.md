@@ -57,9 +57,9 @@
    * PORT=:8080
    * CONN_STRING=host={your_db_host} port={your_db_port} user={your_db_user} password={your_db_password} dbname={your_db_name} sslmode=disable
    * DRIVER_NAME=postgres
-   * ENV={dev or prod}
-   * TIMEOUT={your_timeout}
-   * IDLE_TIMEOUT={your_idle_timeout}
+   * ENV=prod
+   * TIMEOUT=4s
+   * IDLE_TIMEOUT=60s
 
 6. Файл calculator/internal/config/envs/prod.env должен иметь следующее содержимое:
    * CONN_STRING=host={your_db_host} port={your_db_port} user={your_db_user} password={your_db_password} dbname={your_db_name} sslmode=disable
